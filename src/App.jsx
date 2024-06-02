@@ -5,8 +5,8 @@ import NavbarComp from './Navbar';
 function App() {
   return (
     <div className="App">
+      <h1>Digital Li</h1>
       <NavbarComp/>
-      <h1>Digital Library</h1>
     </div>
   );
 }

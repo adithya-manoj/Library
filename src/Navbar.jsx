@@ -9,7 +9,8 @@ function NavbarComp() {
     <div>
         <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Digital Library</Navbar.Brand>
+          <Navbar.Brand href="#home">Digital Libraryyyy</Navbar.Brand>
+
           <Nav className="me-auto">
             
             <Link to='/Login'>Login</Link>
