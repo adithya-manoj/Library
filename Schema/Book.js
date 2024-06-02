@@ -20,3 +20,6 @@ const bookschema = new mongoose.Schema({
         ref:User
     }
 })
+
+const Book=mongoose.model('book',bookschema)
+export default Book
