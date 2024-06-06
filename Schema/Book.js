@@ -18,6 +18,9 @@ const bookschema = new mongoose.Schema({
     userid:{
         type:mongoose.Types.ObjectId,
         ref:User
+    },
+    genre:{
+        type:String
     }
 })
 

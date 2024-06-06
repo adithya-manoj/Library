@@ -19,16 +19,27 @@ app.use(cors())
 app.get('/', (req, res) => {
     res.json({})
 })
+//<<<------------------------------------Middleware Starts------------------------------------->>>
+let verifyToken = (req, res, next) => {
+    try {
+        console.log(req.headers.authorization,abcd);
+        let response = jwt.verify(req.headers.authorization,'abcd')
+        req.user=response;
+        
+        next();
+        
+    }
+    catch (e) {
+        res.status(401).json(e.message)
+        console.log('Token Verification Failed');
+    }
+}
+//<<<------------------------------------Middleware Ends------------------------------------->>>
 
-// let verifyToken = (req, res, next) => {
-//     try {
-//         console.log(req.headers.authorization);
-//         let response = jwt.verify
-//     }
-//     catch (e) {
+app.get('/auth',verifyToken,async(req,res)=>{
+    res.json({message:'Authentication Succesful!!',user:req.user})
 
-//     }
-// }
+})
 
 app.post('/register', async (req, res) => {
     try {
@@ -99,6 +110,18 @@ app.get('/viewbookall',async(req,res)=>{
     let response=await Book.find()
     res.json(response)
 })
+
+app.get('/viewbycategory/:category', async (req, res) => {
+    try {
+        const category = req.params.category;  
+        console.log(category);
+        let response = await Book.find({ genre: category });
+        console.log(response);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching books by category', error });
+    }
+});
 
 app.delete('/deletebook/:bookname',async(req,res)=>{
     try{
