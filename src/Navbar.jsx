@@ -6,19 +6,20 @@ import { Link } from 'react-router-dom';
 
 function NavbarComp() {
   return (
-    <div>
-        <Navbar bg="dark" data-bs-theme="dark">
+    <>
+     <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">Digital Libraryyyy</Navbar.Brand>
-
-          <Nav className="me-auto">
-            
-            <Link to='/Login'>Login</Link>
-
-          </Nav>
+          <Navbar.Brand href="#home">Digital Library</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              
+              <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
-    </div>
+    </>
   )
 }
 

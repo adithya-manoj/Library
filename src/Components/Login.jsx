@@ -27,7 +27,7 @@ let handleLogin = async(e)=>{
   try{
     let response = await axios.post('http://localhost:4000/login',data);
     toast.success('Login Success!!')
-    loginNav('/UserHome')
+    loginNav('/UserNav')
     console.log(response);
     localStorage.setItem('token',response.data.token)
     localStorage.setItem('id',response.data.response._id)

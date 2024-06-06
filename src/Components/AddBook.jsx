@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import FileBase64 from 'react-file-base64';
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddBook = () => {
-    const [data, setData] = useState({bookname: '',authorname: '', desc: ''});
+    const [data, setData] = useState({ bookname: '', authorname: '', desc: '', genre: '' });
     const [image, setImage] = useState('');
 
     let id = localStorage.getItem('id');
@@ -24,12 +25,13 @@ const AddBook = () => {
             toast.error('Failed to add book.');
         }
 
-        setData({bookname: '',authorname: '',desc: ''});
+        setData({ bookname: '', authorname: '', desc: '', genre: '' });
         setImage('');
     }
 
     return (
         <div>
+            <ToastContainer />
             <div className='m-2 p-2'>
                 <h1>Add Book</h1>
                 <div>
@@ -65,7 +67,30 @@ const AddBook = () => {
                             />
                         </div>
                         <div className="mb-3">
-                            Cover Page: 
+                            <label htmlFor="genre" className="form-label">Genre </label>
+                            <select 
+                                name='genre' 
+                                className="form-control" 
+                                value={data.genre}
+                                onChange={handleChange}
+                            >
+                                <option>Select Genre</option>
+                                <option>Fiction</option>
+                                <option>Mystery & Adventure</option>
+                                <option>Classics</option>
+                                <option>Romance</option>
+                                <option>Thriller and Suspense</option>
+                                <option>Biographies and Memoirs</option>
+                                <option>Poetry</option>
+                                <option>Horror</option>
+                                <option>Fantasy</option>
+                                <option>Comics and Graphic Novels</option>
+                                <option>History</option>
+                                <option>Travel</option>
+                            </select>
+                        </div>
+                        <div className="mb-3">
+                            Cover Page:
                             <FileBase64 multiple={false} onDone={(res) => setImage(res.base64)} />
                         </div>
                         <button type='submit'>Submit</button>
